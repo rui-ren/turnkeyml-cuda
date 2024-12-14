@@ -44,10 +44,13 @@ setup(
         "fasteners",
         "GitPython>=3.1.40",
         "psutil",
-        # Conditional dependencies for ONNXRuntime backends
-        "onnxruntime >=1.10.1;platform_system=='Linux' and extra != 'llm-oga-cuda'",
-        "onnxruntime-directml >=1.19.0;platform_system=='Windows' and extra != 'llm-oga-cuda'",
-        "onnxruntime-gpu >=1.19.1;extra == 'llm-oga-cuda'",
+        "transformers<4.45.0",
+        "accelerate",
+        "py-cpuinfo",
+        "sentencepiece",
+        "datasets",
+        "fastapi",
+        "uvicorn[standard]",
     ],
     extras_require={
         "llm": [

@@ -432,6 +432,8 @@ class OgaLoad(FirstTool):
                 else:
                     os.environ["USE_AIE_RoPE"] = "1"
 
+            print("Input folder = ", full_model_path)
+
             state.model = OrtGenaiModel(full_model_path)
             state.tokenizer = OrtGenaiTokenizer(state.model.model)
             state.dtype = dtype
