@@ -44,6 +44,12 @@ setup(
         "fasteners",
         "GitPython>=3.1.40",
         "psutil",
+        "wmi",
+        "pytz",
+        # Conditional dependencies for ONNXRuntime backends
+        "onnxruntime >=1.10.1;platform_system=='Linux' and extra != 'llm-oga-cuda'",
+        "onnxruntime-directml >=1.19.0;platform_system=='Windows' and extra != 'llm-oga-cuda'",
+        "onnxruntime-gpu >=1.19.1;extra == 'llm-oga-cuda'",
     ],
     extras_require={
         "llm": [
@@ -91,6 +97,15 @@ setup(
             "accelerate",
             "py-cpuinfo",
             "sentencepiece",
+            "datasets",
+            "fastapi",
+            "uvicorn[standard]",
+        ],
+        "llm-oga-hybrid": [
+            "transformers",
+            "torch",
+            "onnx==1.16.1",
+            "numpy==1.26.4",
             "datasets",
             "fastapi",
             "uvicorn[standard]",
