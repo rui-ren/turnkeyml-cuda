@@ -76,10 +76,10 @@ setup(
             "uvicorn[standard]",
         ],
         "llm-oga-cuda": [
-            "onnxruntime-genai-cuda==0.4.0",
+            "onnxruntime-genai-cuda==0.5.2",
             "tqdm",
             "torch>=2.0.0,<2.4",
-            "transformers<4.45.0",
+            "transformers> 4.45.0",
             "accelerate",
             "py-cpuinfo",
             "sentencepiece",
