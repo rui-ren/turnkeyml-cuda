@@ -7,20 +7,21 @@ from turnkeyml.tools.management_tools import Cache, Version, SystemInfo
 from turnkeyml.tools.report import Report
 from turnkeyml.state import State
 
-from turnkeyml.llm.tools.huggingface_load import (
+from lemonade.tools.huggingface_load import (
     HuggingfaceLoad,
     AdaptHuggingface,
 )
 
-from turnkeyml.llm.tools.huggingface_bench import HuggingfaceBench
-from turnkeyml.llm.tools.ort_genai.oga_bench import OgaBench
+from lemonade.tools.huggingface_bench import HuggingfaceBench
+from lemonade.tools.ort_genai.oga_bench import OgaBench
+from lemonade.tools.llamacpp_bench import LlamaCppBench
+from lemonade.tools.llamacpp import LoadLlamaCpp
 
-from turnkeyml.llm.tools.llamacpp import LoadLlamaCpp
-
-import turnkeyml.llm.cache as cache
-from turnkeyml.llm.tools.mmlu import AccuracyMMLU
-from turnkeyml.llm.tools.perplexity import AccuracyPerplexity
-from turnkeyml.llm.tools.chat import LLMPrompt, Serve
+import lemonade.cache as cache
+from lemonade.tools.mmlu import AccuracyMMLU
+from lemonade.tools.humaneval import AccuracyHumaneval
+from lemonade.tools.perplexity import AccuracyPerplexity
+from lemonade.tools.chat import LLMPrompt, Serve
 
 
 def main():
@@ -29,7 +30,9 @@ def main():
     tools = [
         HuggingfaceLoad,
         LoadLlamaCpp,
+        LlamaCppBench,
         AccuracyMMLU,
+        AccuracyHumaneval,
         AccuracyPerplexity,
         LLMPrompt,
         AdaptHuggingface,
@@ -45,7 +48,7 @@ def main():
 
     # Import onnxruntime-genai recipes
     try:
-        from turnkeyml.llm.tools.ort_genai.oga import OgaLoad
+        from lemonade.tools.ort_genai.oga import OgaLoad
 
         tools = tools + [OgaLoad]
 
@@ -54,7 +57,7 @@ def main():
 
     # Import RyzenAI NPU modules only if RyzenAI NPU is installed
     try:
-        from turnkeyml.llm.tools.ryzenai_npu.ryzenai_npu import RyzenAINPULoad
+        from lemonade.tools.ryzenai_npu.ryzenai_npu import RyzenAINPULoad
 
         tools = tools + [RyzenAINPULoad]
     except ModuleNotFoundError:
